@@ -69,7 +69,7 @@
             elImage = null;
 
             // Handle mouse movements
-            $container.mousemove(function(e) {
+            function mouseMoveHandler(e) {
               // x/y coordinates of the mouse pointer
               // This is the position of .magnify relative to the document.
               var oMagnifyOffset = $container.offset(),
@@ -111,7 +111,12 @@
                   backgroundPosition: sBgPos || ''
                 });
               }
-            });
+            }
+
+            $container.mousemove(mouseMoveHandler);
+            if(oSettings.triggeringEvent) {
+              mouseMoveHandler(oSettings.triggeringEvent);
+            }
 
             if ($anchor.length) {
               // Make parent anchor inline-block to have correct dimensions
